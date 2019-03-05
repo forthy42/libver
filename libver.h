@@ -1,5 +1,16 @@
 /* libver header dummy */
 
+#ifndef VER_MAJ
+#define VER_MAJ 2
+#endif
+#ifndef VER_MIN
+#if VER_MAJ > 1
+#define VER_MIN 3
+#else
+#define VER_MIN 1
+#endif
+#endif
+
 extern void libver();
 #if VER_MAJ > 0
 extern void libver1();
