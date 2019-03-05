@@ -4,7 +4,11 @@
 #define VER_MAJ 2
 #endif
 #ifndef VER_MIN
+#if VER_MAJ > 1
 #define VER_MIN 3
+#else
+#define VER_MIN 1
+#endif
 #endif
 
 #include "libver.h"

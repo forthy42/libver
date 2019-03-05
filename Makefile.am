@@ -15,12 +15,18 @@ distclean-local: clean-am distclean-compile distclean-hdr distclean-libtool dist
 install-exec-hook:
 	-/sbin/ldconfig $(libdir)
 
-tests: testver10 testver11 testver20 testver23
+tests: testver testver1 testver10 testver11 testver2 testver20 testver23
 
+testver:	libver10.la libver11.la libver20.la libver23.la
+	gcc -lver -L. test.c -Xlinker -rpath $$PWD/.libs -o testver
+testver1:	libver10.la libver11.la
+	gcc -lver1 -DVER_MAJ=1 -L. test.c -Xlinker -rpath $$PWD/.libs -o testver1
 testver10:	libver10.la
 	gcc -lver10 -DVER_MAJ=1 -DVER_MIN=0 -L. test.c -Xlinker -rpath $$PWD/.libs -o testver10
 testver11:	libver10.la libver11.la
 	gcc -lver11 -DVER_MAJ=1 -DVER_MIN=1 -L. test.c -Xlinker -rpath $$PWD/.libs -o testver11
+testver2:	libver10.la libver11.la libver20.la
+	gcc -lver2 -DVER_MAJ=2 -L. test.c -Xlinker -rpath $$PWD/.libs -o testver2
 testver20:	libver10.la libver11.la libver20.la
 	gcc -lver20 -DVER_MAJ=2 -DVER_MIN=0 -L. test.c -Xlinker -rpath $$PWD/.libs -o testver20
 testver23:	libver10.la libver11.la libver20.la libver23.la
